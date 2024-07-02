@@ -1,11 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import SKUTrendVisualization from './SKUTrendVisualization';
 import CandlestickChart from './CandlestickChart';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/sku-trend-visualization">
       <div>
         <nav>
           <ul>
