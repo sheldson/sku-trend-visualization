@@ -4,7 +4,7 @@ import Papa from 'papaparse';
 
 const SKUTrendVisualization = () => {
   const [rawData, setRawData] = useState([]);
-  const [selectedSkus, setSelectedSkus] = useState([]);
+  const [selectedSkus, setSelectedSkus] = useState(['连续包月', '1个月会员', '连续包年', '连续包季']);
   const changeChartRef = useRef(null);
   const countChartRef = useRef(null);
 
@@ -124,6 +124,13 @@ const SKUTrendVisualization = () => {
       chart.setOption(getCountOption());
     }
   }, [getChangeOption, getCountOption]);
+
+  useEffect(() => {
+    if (rawData.length > 0) {
+      const availableSkus = [...new Set(rawData.map(item => skuMapping[item.sku] || item.sku))];
+      setSelectedSkus(prev => prev.filter(sku => availableSkus.includes(sku)));
+    }
+  }, [rawData]);
 
   return (
     <div className="App">

@@ -4,7 +4,7 @@ import Papa from 'papaparse';
 
 const CandlestickChart = () => {
   const [rawData, setRawData] = useState([]);
-  const [selectedSkus, setSelectedSkus] = useState([]);
+  const [selectedSkus, setSelectedSkus] = useState(['连续包月', '1个月会员', '连续包年', '连续包季']);
   const chartRef = useRef(null);
 
   // 更新后的 SKU 映射
@@ -179,6 +179,14 @@ const CandlestickChart = () => {
       chart.setOption(getOption());
     }
   }, [getOption]);
+
+
+  useEffect(() => {
+    if (rawData.length > 0) {
+      const availableSkus = [...new Set(rawData.map(item => skuMapping[item.sku] || item.sku))];
+      setSelectedSkus(prev => prev.filter(sku => availableSkus.includes(sku)));
+    }
+  }, [rawData]);
 
   return (
     <div className="App">
