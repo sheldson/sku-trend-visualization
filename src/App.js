@@ -5,16 +5,12 @@ import CandlestickChart from './CandlestickChart';
 
 function App() {
   return (
-    <Router basename="/sku-trend-visualization">
+    <Router basename="/">
       <div>
         <nav>
           <ul>
-            <li>
-              <Link to="/">原始图表</Link>
-            </li>
-            <li>
-              <Link to="/candlestick">类K线图</Link>
-            </li>
+            <li><Link to="/">原始图表</Link></li>
+            <li><Link to="/candlestick">类K线图</Link></li>
           </ul>
         </nav>
 
